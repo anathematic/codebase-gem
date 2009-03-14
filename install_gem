@@ -1,0 +1,4 @@
+#!/bin/bash
+
+scp -P 24680 $1 root@atech-s3.com:/var/www/atech/gems/gems/$1
+ssh -p 24680 root@atech-s3.com 'cd /var/www/atech/gems && /usr/local/bin/gem generate_index'
