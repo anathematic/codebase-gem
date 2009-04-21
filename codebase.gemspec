@@ -1,10 +1,8 @@
 Gem::Specification.new do |s|
   s.name = 'codebase'
-  s.version = "3.0.0"
+  s.version = "3.0.1"
   s.platform = Gem::Platform::RUBY
   s.summary = "The codebase gem to make using codebase easier (duh?)"
-  
-  s.add_dependency('colored', '>= 1.1')
   
   s.files = Dir.glob("{bin,lib}/**/*")
   s.require_path = 'lib'

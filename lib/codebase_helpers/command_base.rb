@@ -20,5 +20,20 @@ module Codebase
       end
     end
     
+    def execute_commands(array)
+      for command in array
+        puts "\e[44;33m" + command + "\e[0m"
+        exit_code = 0
+        IO.popen(command) do |f|
+          output = f.read
+          exit_code = Process.waitpid2(f.pid)[1]
+        end
+        if exit_code != 0
+          $stderr.puts "An error occured running: #{command}"
+          Process.exit(1)
+        end
+      end
+    end
+    
   end
 end

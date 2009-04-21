@@ -18,7 +18,7 @@ module Codebase
       method = args.shift || 'default'
       command = Codebase::Command.new(repository, args)
       if command.respond_to?(method)
-        command.send(method)
+        command.send(method, *args)
       else
         $stderr.puts "Command Not Found - please check http://help.codebasehq.com for documentation."
       end
