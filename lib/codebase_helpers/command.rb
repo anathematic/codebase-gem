@@ -70,7 +70,6 @@ module Codebase
     alias_method :ta, :tasks
     
     def mkbranch(branch_name, source_branch = 'master')
-      ## use the current branch
       commands = []
       commands << "git push origin #{source_branch}:refs/heads/#{branch_name}"
       commands << "git fetch origin"
