@@ -35,6 +35,10 @@ module Codebase
       raise Codebase::Error, "This is not a valid Codebase repository" unless repository?
       @repository
     end
+    
+    def path
+      File.dirname(__FILE__)
+    end
 
     private
     
