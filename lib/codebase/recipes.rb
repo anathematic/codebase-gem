@@ -23,15 +23,21 @@ Capistrano::Configuration.instance(:must_exist).load do
       puts "      -  Project......: #{project}"
       puts "      -  Repository...: #{repository}"
           
-      environment_to_send = ''
-      if self.respond_to?(:environment)  && !self.environment.empty?
-        environment_to_send = self.environment.dup
-        environment_to_send.gsub!(/\W+/, ' ')
-        environment_to_send.strip!
-        environment_to_send.downcase!
-        environment_to_send.gsub!(/\ +/, '-')
-        puts "      -  Environment..: #{environment_to_send}"
+
+      environment_to_send = begin
+        env = (self.environment rescue self.rails_env).dup
+        env.gsub!(/\W+/, ' ')
+        env.strip!
+        env.downcase!
+        env.gsub!(/\ +/, '-')
+        
+        puts "      -  Environment..: #{env}" unless env.blank?
+        
+        env
+      rescue
+        ''
       end
+
     
       servers = roles.values.collect{|r| r.servers}.flatten.collect{|s| s.host}.uniq.join(', ') rescue ''
     
