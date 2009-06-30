@@ -14,6 +14,7 @@ Capistrano::Configuration.instance(:must_exist).load do
       url = "#{m[1]}.codebasehq.com"
       project = m[2]
       repository = m[3]
+      branch = self.branch rescue "master"
     
       puts "  * \e[44;33mAdding Deployment to your Codebase account\e[0m"
       puts "      -  Account......: #{url}"
