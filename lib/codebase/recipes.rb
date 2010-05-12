@@ -6,6 +6,7 @@ Capistrano::Configuration.instance(:must_exist).load do
     
     username = `git config codebase.username`.chomp.strip
     api_key  = `git config codebase.apikey`.chomp.strip
+    branch ||= "master"
     
     regex = /git\@gitbase\.com:(.*)\/(.*)\/(.*)\.git/
     unless m = repository.match(regex)
